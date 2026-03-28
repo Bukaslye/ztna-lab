@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+
+  wireguard:
+    image: linuxserver/wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - ./wireguard:/config
+    ports:
+      - "51820:51820/udp"
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/certs
+      - ./ca:/ca
+    ports:
+      - "443:443"
+    depends_on:
+      - service-a
+      - service-b
+      - policy-engine
+
+  policy-engine:
+    build: ./policy-engine
+    networks:
+      - internal
+
+  service-a:
+    build: ./services/service-a
+    networks:
+      - internal
+
+  service-b:
+    build: ./services/service-b
+    networks:
+      - internal
+
+networks:
+  internal:
+    internal: true
