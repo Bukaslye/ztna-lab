@@ -1,10 +1,10 @@
-from flask import flask, jsonify
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-return jsonify({
+    return jsonify({
         "service": "service-a",
         "status": "running",
         "message": "Welcome to Service A - Authorised access only!"

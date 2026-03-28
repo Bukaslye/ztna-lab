@@ -23,6 +23,8 @@ services:
       - service-a
       - service-b
       - policy-engine
+    networks:
+      - internal
 
   policy-engine:
     build: ./policy-engine
