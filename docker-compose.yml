@@ -25,6 +25,7 @@ services:
       - policy-engine
     networks:
       - internal
+      - default
 
   policy-engine:
     build: ./policy-engine
@@ -44,3 +45,5 @@ services:
 networks:
   internal:
     internal: true
+  default:
+    driver: bridge
