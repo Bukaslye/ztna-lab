@@ -81,24 +81,28 @@ docker ps
 curl -k --cert ca/client.crt --key ca/client.key https://localhost/service-a/
 Response: {"message":"Welcome to Service A","service":"service-a","status":"running"}
 ```
+![Test 1](screenshots/Test1.png)
 
 ### Test 2 — No certificate (FAIL as expected)
 ```
 curl -k https://localhost/service-a/
 Response: 400 Bad Request — No required SSL certificate was sent
 ```
+![Test 2](screenshots/Test2.png)
 
 ### Test 3 — Direct service access bypass (FAIL as expected)
 ```
 curl http://localhost:8080/
 Response: Connection refused
 ```
+![Test 3](screenshots/Test3.png)
 
 ### Test 4 — Direct service-b access bypass (FAIL as expected)
 ```
 curl http://localhost:8081/
 Response: Connection refused
 ```
+![Test 4](screenshots/Test4.png)
 
 ## Frameworks Referenced
 
